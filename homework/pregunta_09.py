@@ -20,7 +20,6 @@ librerias de pandas para resolver las preguntas.
 import pandas as pd
 
 def pregunta_09():
-    # Leer el archivo
     df = pd.read_csv(r"files/input/tbl0.tsv", sep="\t")
 
     if 'suma' in df.columns:  
