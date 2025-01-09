@@ -3,11 +3,6 @@ Escriba el codigo que ejecute la accion solicitada en cada pregunta. Los
 datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y 
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
-"""
-
-
-def pregunta_10():
-    """
     Construya una tabla que contenga `c1` y una lista separada por ':' de los
     valores de la columna `c2` para el archivo `tbl0.tsv`.
 
@@ -19,4 +14,21 @@ def pregunta_10():
     C                     0:5:6:7:9
     D                   1:2:3:5:5:7
     E   1:1:2:3:3:4:5:5:5:6:7:8:8:9
-    """
+"""
+
+import pandas as pd
+
+def pregunta_10():
+    df = pd.read_csv(r"files/input/tbl0.tsv", sep="\t")
+    
+    # Agrupar por 'c1' y combinar los valores de 'c2' en una lista separada por ':'
+    resultado = df.groupby('c1')['c2'].apply(lambda x: ':'.join(map(str, sorted(x)))).reset_index()
+    
+    # Establecer 'c1' como índice y renombrar la columna resultante
+    resultado = resultado.set_index('c1')
+    resultado.columns = ['c2']
+    
+    return resultado
+
+if __name__ == "__main__":
+    print(pregunta_10())
