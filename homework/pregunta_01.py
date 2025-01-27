@@ -15,5 +15,4 @@ def pregunta_01():
     df = pd.read_csv("files\input/tbl0.tsv", sep= "\t")
     cantidad_filas = df.shape[0]
     return cantidad_filas
-
 print (pregunta_01())
